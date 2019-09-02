@@ -1,0 +1,39 @@
+<div class="container">
+    <mat-toolbar color="primary" class="toolbar" *ngIf="isLoggedIn()">
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+            <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+        </button>
+        <h1 class="app-name">EdPas</h1>
+        <span class="spacer"></span>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/profile">
+                <mat-icon>account_box</mat-icon>
+                <span>Profile</span>
+            </button>
+            <button mat-menu-item (click)="sidenav.opened = false" (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Sign out</span>
+            </button>
+        </mat-menu>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #sidenav>
+            <img src="assets/EPC.png" width="128" class="app-logo">
+            <div *ngFor="let menu of menus">
+                <button mat-menu-item (click)="sidenav.toggle()" routerLink="{{menu.url}}" class="cursor-pointer">
+                    <mat-icon>{{menu.icon}}</mat-icon>
+                    <span>{{menu.name}}</span>
+                </button>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

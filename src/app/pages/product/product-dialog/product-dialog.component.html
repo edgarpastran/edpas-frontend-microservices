@@ -1,0 +1,22 @@
+<div>
+    <mat-form-field>
+        <input matInput placeholder="Name" required [(ngModel)]="product.name">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <input matInput placeholder="Brand" required [(ngModel)]="product.brand">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <input matInput placeholder="Price" required [(ngModel)]="product.price" type="number">
+    </mat-form-field>        
+</div>
+
+<!-- Button Cancel -->
+<button mat-fab color="warn" (click)="cancel()">
+    <mat-icon>close</mat-icon>
+</button>        
+<!-- Button OK -->
+<button mat-fab color="primary" class="float-right" (click)="process()">
+    <mat-icon>done</mat-icon>
+</button>
